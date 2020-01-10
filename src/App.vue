@@ -7,7 +7,7 @@
 
 <script>
 // import Todo from "./components/Todo.vue";
-import Store from "./components/Store.vue";
+import Store from "./components/store/Store.vue";
 import { mapActions } from "vuex";
 
 export default {

@@ -11,7 +11,16 @@
       </div>
       <div class="col-9 bg-success p-2">
         <h4 class="text-white m-2">Products</h4>
+        <product-list />
       </div>
     </div>
   </div>
 </template>
+<script>
+import ProductList from "./ProductList";
+export default {
+  components: {
+    ProductList
+  }
+};
+</script>

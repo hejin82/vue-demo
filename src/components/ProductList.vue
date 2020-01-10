@@ -4,7 +4,7 @@
       <h4>
         {{ p.name }}
         <span class="badge badge-pill badge-primary float-right">
-          {{ p.price }}
+          {{ p.price | currency }}
         </span>
       </h4>
       <div class="card-text bg-white p-1">{{ p.description }}</div>
@@ -16,6 +16,14 @@ import { mapState } from "vuex";
 export default {
   computed: {
     ...mapState(["products"])
+  },
+  filters: {
+    currency(value) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+      }).format(value);
+    }
   }
 };
 </script>

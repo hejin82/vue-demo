@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import Axios from "axios";
 import CartModule from "./cart";
 import OrderModule from "./orders";
+import AuthModule from "./auth";
 
 Vue.use(Vuex);
 
@@ -12,7 +13,7 @@ const categoriesUrl = `${baseUrl}/categories`;
 
 export default new Vuex.Store({
   strict: true,
-  modules: { cart: CartModule, orders: OrderModule },
+  modules: { cart: CartModule, orders: OrderModule, auth: AuthModule },
   state: {
     categoriesData: [],
     currentPage: 1,

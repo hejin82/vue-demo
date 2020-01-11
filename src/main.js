@@ -5,10 +5,12 @@ import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 
 import store from "./store";
+import router from "./router";
 
 Vue.config.productionTip = false;
 
 new Vue({
   render: h => h(App),
-  store
+  store,
+  router
 }).$mount("#app");

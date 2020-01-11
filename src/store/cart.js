@@ -3,7 +3,7 @@ export default {
   state: {
     lines: []
   },
-  gitters: {
+  getters: {
     itemCount: state =>
       state.lines.reduce((total, line) => total + line.quantity, 0),
     totalPrice: state =>

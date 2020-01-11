@@ -8,9 +8,16 @@
     </div>
     <div class="row">
       <div class="col-3 bg-info p-2">
-        <CategoryControls />
+        <CategoryControls class="mb-5" />
+        <button
+          class="btn btn-block btn-warning mt-5"
+          v-on:click="setShowSearch(true)"
+        >
+          Search
+        </button>
       </div>
       <div class="col-9 p-2">
+        <Search />
         <product-list />
       </div>
     </div>
@@ -20,12 +27,18 @@
 import ProductList from "./ProductList";
 import CategoryControls from "./CategoryControls";
 import CartSummary from "./CartSummary";
+import { mapMutations } from "vuex";
+import Search from "./Searach";
 
 export default {
   components: {
     ProductList,
     CategoryControls,
-    CartSummary
+    CartSummary,
+    Search
+  },
+  methods: {
+    ...mapMutations(["setShowSearch"])
   }
 };
 </script>

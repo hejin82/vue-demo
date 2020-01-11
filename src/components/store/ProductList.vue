@@ -32,14 +32,6 @@ export default {
     // ...mapState(["products"])
     ...mapGetters({ products: "processedProducts" })
   },
-  filters: {
-    currency(value) {
-      return new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD"
-      }).format(value);
-    }
-  },
   methods: {
     ...mapMutations({ addProduct: "cart/addProduct" }),
     handleProductAdd(product) {

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex"></script>
+    <title>vue-demo</title>
+  </head>
+  <body>
+    <div id="app">
+    </div>
+    <script>
+      Vue.component('OurHeader', {
+        template: `
+          <h1>App Header</h1>
+        `
+      });
+      Vue.component('OurSecondHeader', {
+        data: function() {
+          return {
+            text: 'App Header 2'
+          };
+        },
+        template: `
+          <h1 v-on:click="text = text.split('').reverse().join('')">{{text}}</h1>
+        `
+      });
+      Vue.component('OurThirdHeader', {
+        props: ['text'],
+        template: `
+          <h1>{{text}}</h1>
+        `
+      });
+      Vue.component('OurFourthHeader', {
+        props: {
+          text: String
+        },
+        template: `
+          <h1>{{text}}</h1>
+        `
+      });
+      Vue.component('SearchBox', {
+        template: `
+          <div>
+            <label>Search:</label>
+            <input type="text" v-on:keyup.enter.esc="$emit('input', $event.target.value)" />
+          </div>
+        `
+      });
+      var baseMixin = {
+        data: function() {
+          return { text: 'default'}
+        },
+        created: function() {
+          this.log(`my text when created:${this.text}`)
+        },
+        methods: {
+          log: function(...params) {
+            console.log(...params);
+          }
+        },
+        template: `
+          <div>  
+            <h1>{{text}}</h1>
+          </div>
+        `
+      };
+      var componentOne = {
+        mixins: [baseMixin]
+      };
+      var secondBaseMixin = {
+        data: function() {
+          return { text: 'default from secondBaseMixin'}
+        }
+      };
+      var componentTwo = {
+        mixins: [baseMixin, secondBaseMixin]
+      };
+      var app = new Vue({
+        el: '#app',
+        data: {
+          message: 'hello from getting to vue',
+          items: ['first', 'two', '3']
+        },
+        methods: {
+          userClickedAButton: function() {
+            console.log('something coll');
+          },
+          search: function() {
+            console.log('search');
+          }
+        },
+        template: `
+          <div>
+            <div>{{message}}</div>
+            <ul>
+              <li v-for="(item, index) in items" :key="item">
+                {{index}} {{item}}
+              </li>
+            </ul>
+            <our-header></our-header>
+            <OurHeader></OurHeader>
+            <OurSecondHeader></OurSecondHeader>
+            <OurThirdHeader text="App Header 3"></OurThirdHeader>
+            <OurFourthHeader text=1></OurFourthHeader>
+            <SearchBox v-on:input="search" />
+          </div>
+        `
+      })
+    </script>
+  </body>
+</html>
